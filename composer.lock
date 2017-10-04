@@ -4,8 +4,44 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "f7c951df6c7dc6de6bcfaadfd70bee4a",
+    "content-hash": "72b95795c8f6d6e1fbfe448b59e3a882",
     "packages": [
+        {
+            "name": "bluerhinos/phpmqtt",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bluerhinos/phpMQTT.git",
+                "reference": "d3dcdb42fa77c7ebae3e81fdd0e150805a57d8b9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bluerhinos/phpMQTT/zipball/d3dcdb42fa77c7ebae3e81fdd0e150805a57d8b9",
+                "reference": "d3dcdb42fa77c7ebae3e81fdd0e150805a57d8b9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Bluerhinos\\": "./"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD"
+            ],
+            "authors": [
+                {
+                    "name": "Andrew Milsted",
+                    "email": "andrew@bluerhinos.co.uk"
+                }
+            ],
+            "description": "Simple MQTT Class",
+            "time": "2017-09-06T17:57:05+00:00"
+        },
         {
             "name": "dnoegel/php-xdg-base-dir",
             "version": "0.1",
@@ -3911,6 +3947,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "bluerhinos/phpmqtt": 20,
         "nakard/mosquitto-php-stub": 20,
         "twbs/bootstrap": 10
     },
