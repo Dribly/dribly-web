@@ -15,7 +15,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/mqqt', 
-        ['as' => 'mqqt.test',
-    'uses' => 'AdafruitMQTTController@index']);
+Route::get('/mqttsubscriber', 
+        ['as' => 'mqtt.monitor',
+    'uses' => 'MQTTController@monitor']);
+
+Route::get('/mqttsendmessage', 
+        ['as' => 'mqtt.sendmessage',
+    'uses' => 'MQTTController@sendmessage']);
+
+Route::get('/mqttiframe', 
+        ['as' => 'mqtt.mqttiframe',
+    'uses' => 'MQTTController@iframe']);
 

@@ -3,11 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Bluerhinos\phpMQTT;
 
-class AdafruitMqttServiceProvider extends ServiceProvider
+class CloudMqttServiceProvider extends ServiceProvider
 {
-
     /**
      * Bootstrap the application services.
      *
@@ -15,6 +13,7 @@ class AdafruitMqttServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        //
     }
 
     /**
@@ -24,9 +23,8 @@ class AdafruitMqttServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('App\Library\Services\AdafruitMQTTServiceProvider', function ($app) {
-          return new AdafruitMQTT();
+        $this->app->bind('App\Library\Services\CloudMQTTServiceProvider', function ($app) {
+          return new CloudMQTT();
         });
     }
-        //;
-    }
+}
