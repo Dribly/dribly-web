@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace Dribly;
 
 use Illuminate\Database\Eloquent\Model;
 
-class WaterSensor extends MqttSensors
+class WaterSensor extends Dribly\MqttSensors
 {
     //
 }

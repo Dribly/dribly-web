@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Dribly;
 
 use Illuminate\Database\Eloquent\Model;
 
