@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace Dribly;
 
 use Illuminate\Database\Eloquent\Model;
 
-class MessageLog extends Model
+class MqttActor extends Model
 {
     //
 }
