@@ -1,10 +1,10 @@
 <?php
 
-namespace Dribly;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Tap extends MqttActor
+class MqttActor extends Model
 {
     //
 }

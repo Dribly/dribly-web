@@ -1,10 +1,10 @@
 <?php
 
-namespace Dribly;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class MqttSensors extends Model
+class MqttBase extends Model
 {
     //
 }
