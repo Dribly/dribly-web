@@ -2,17 +2,7 @@
 namespace App\Library\Services;
 
 use Lightning\App;
-//// Try to establish connection to server
-//$client = new LibMQTT\Client("serverName",8883,"ThisIsYourUniqueClientID");
-//// Set connection protocol ("tls" = all tls versions)
-//$client->setCryptoProtocol("tls");
-//// If server is running with self-signed certificate, provide CA file here
-//#$client->setCAFile("path_to_cafile");
-//$result = $client->connect();
-//// Publish message to "topic1/topic2"
-//$client->publish("topic1/topic2", "Test Message", 0);
-//// Close the connection.
-//$client->close();
+
 class CloudMQTT {
 
     const SERVER = 'm21.cloudmqtt.com';
@@ -40,9 +30,6 @@ class CloudMQTT {
         $this->initMqtt();
         static::$mqtt->connect();
         static::$mqtt->subscribe(self::FEED_TYPES[$feed], 0, function (\Lightning\Response $response) {
-echo "got a message\n";
-flush();
-echo "it was " . $response->getMessage()."\n";
             $messageLog = new \App\MessageLog();
             $messageLog->message =  $response->getMessage();
             $messageLog->route =  '';
@@ -52,12 +39,8 @@ echo "it was " . $response->getMessage()."\n";
             $messageLog->save();
 
             $message = $response->getMessage();
-            echo 'Message - ' . $message ."\n";
-            flush();
-//            die();
             });
             static::$mqtt->listen(true);
-//        static::$mqtt->publish(self::FEED_TYPES[$feed], '{"message":"'.$message."'}", 1);
         static::$mqtt->close();
 //        if (static::$mqtt->connect(true, NULL, self::USERNAME, self::KEY)) {
 //            $topics[self::FEED_TYPES[$feed]] = array("qos" => 0, "function" => "procmsg");
@@ -87,27 +70,6 @@ echo "it was " . $response->getMessage()."\n";
     }
 
     /**
-     * 
-     * $host = 'mqtt.example.com';
-$port = 1883;
-$clientID = md5(uniqid());
-$username = 'user';
-$password = 'password';
-
-// Without username/password
-$mqtt = new \Lightning\App($host, $port, $clientID);
-
-// With username/password
-$mqtt = new \Lightning\App($host, $port, $clientID, $username, $password);
-
-if (!$mqtt->connect()) {
-    exit(1);
-}
-
-$mqtt->close();
-     */
-
-    /**
      * Simply initiates the MQTT if it is not already done
      */
     private function initMqtt() {
@@ -126,10 +88,6 @@ $mqtt->close();
             {
                 var_dump($e);exit;
             }
-//            static::$mqtt->setCryptoProtocol("tls");
-//            $result = 
-            
-//            static::$mqtt = new phpMQTT(self::SERVER, self::PORT, self::USERNAME);
             static::$mqtt->debug = true;
         }
     }
@@ -138,13 +96,11 @@ $mqtt->close();
         echo "<pre>";
         echo "<pre>";
         echo "<h1>Begin monitor</h1>";
-//        $this->sendMessage(self::FEED_WATERSENSOR, date('s') . "s Hello World! at " . date("r"));
         $this->readMessage(self::FEED_WATERSENSOR);
-//        $this->sendMessage(self::FEED_WATERSENSOR, date('s') . "s Bananas are great! at " . date("r"));
         echo "</pre>";
         return 'Output from DemoOne';
     }
-    public function writeMessage() {
+    public function writeTestMessage() {
         echo "<pre>";
         echo "<h1>Begin writign</h1>";
         echo "<a href=\"/mqttsendmessage\">Reload</a><br />";

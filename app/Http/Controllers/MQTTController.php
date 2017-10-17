@@ -14,7 +14,7 @@ class MQTTController extends Controller {
      */
     public function sendmessage(CloudMQTT $customServiceInstance)
     {
-        echo $customServiceInstance->writeMessage();
+        echo $customServiceInstance->writeTestMessage();
     }
     public function monitor(CloudMQTT $customServiceInstance)
     {

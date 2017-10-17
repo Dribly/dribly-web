@@ -1,0 +1,4 @@
+[submodule "dribly-database"]
+	path = dribly-database
+	url = git@github.com:powellblyth/dribly-database.git
+	branch = master
