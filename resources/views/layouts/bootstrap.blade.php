@@ -37,10 +37,10 @@
               <a class="nav-link js-scroll-trigger" href="#about">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#services">Services</a>
+              <a class="nav-link js-scroll-trigger" href="/register">Register</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
+              <a class="nav-link js-scroll-trigger" href="/login">Log in</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
@@ -50,25 +50,25 @@
       </div>
     </nav>
 
-    <header class="masthead">
+
+    <header class="@yield('headerclass','thinmast')">
       <div class="header-content">
         <div class="header-content-inner">
-          <h1 id="homeHeading">Simply watering your stuff</h1>
-          <hr>
-          <p>Dribbly automates your watering, without crazy systems and stuff</p>
-          <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Find Out More</a>
+          <h1 id="homeHeading">@yield('headertitle','Simply Watering Your Stuff')</h1>
+          @yield('headermore')
         </div>
       </div>
     </header>
+
     @yield('content')
     
 
-    <div class="call-to-action bg-dark">
+<!--    <div class="call-to-action bg-dark">
       <div class="container text-center">
         <h2>Free Download at Start Bootstrap!</h2>
         <a class="btn btn-default btn-xl sr-button" href="http://startbootstrap.com/template-overviews/creative/">Download Now!</a>
       </div>
-    </div>
+    </div>-->
 
   </body>
 

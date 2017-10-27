@@ -1,9 +1,15 @@
 @extends('layouts.bootstrap')
 
+@section ('headerclass')masthead
+@endsection
+@section('headermore')
+          <hr>
+          <p>Dribly automates your watering, without crazy systems and stuff</p>
+          <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Find Out More</a>
+
+@endsection
+
 @section('content')
-
-
-
 
     <section class="bg-primary" id="about">
       <div class="container">

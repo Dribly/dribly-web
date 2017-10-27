@@ -1,0 +1,27 @@
+#! /bin/sh
+aws_account_id="765263139711"
+
+if [ ! -f ~/.aws/credentials ]; then
+	echo "You need ~/.aws/credentials"
+	exit 1
+fi
+if [ ! -f ~/.aws/config ]; then
+	echo "You need ~/.aws/config"
+	exit 1
+fi
+
+echo "checking done"
+
+export AWS_PROFILE="deployer"
+echo "Exported profiel"
+
+echo aws ecr get-login --no-include-email
+#$(aws ecr get-login --no-include-email --region eu-west-1 --debug)
+#echo (aws ecr get-login --no-include-email --region eu-west-1 )
+echo "AWS Login Done"
+    docker pull "$aws_account_id".dkr.ecr.eu-west-1.amazonaws.com/dribly-dribly-web:latest
+    docker build -t dribly-dribly-web ./laradock/
+    docker tag dribly-dribly-web "$aws_account_id".dkr.ecr.eu-west-1.amazonaws.com/dribly-dribly-web:latest
+    docker push "$aws_account_id".dkr.ecr.eu-west-1.amazonaws.com/dribly-dribly-web:latest
+
+#765263139711.dkr.ecr.eu-west-1.amazonaws.com/dribly/dribly-web
