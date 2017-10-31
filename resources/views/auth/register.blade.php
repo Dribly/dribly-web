@@ -12,11 +12,11 @@ Log In
 
     <div>
         First Name
-        <input type="text" name="name" value="{{ old('firstname') }}">
+        <input type="text" name="firstname" value="{{ old('firstname') }}">
     </div>
     <div>
         Last Name
-        <input type="text" name="name" value="{{ old('lastname') }}">
+        <input type="text" name="lastname" value="{{ old('lastname') }}">
     </div>
 
     <div>

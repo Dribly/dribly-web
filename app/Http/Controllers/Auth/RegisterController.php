@@ -50,8 +50,8 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'email' => 'required|string|email|max:255',
+            'password' => 'required|string|min:2|confirmed',
         ]);
     }
 
@@ -63,14 +63,25 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $res =  User::create([
-            'firstname' => $data['firstname'],
-            'lastname' => $data['lastname'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+
+//        $request = new \GuzzleHttp\Psr7\Request('POST', $_ENV['SERVICE_USERS'].'/api/v1/register',[
+        $request = new \GuzzleHttp\Psr7\Request('POST', 'http://dribly:3008/'.'/ping',[
+    'form_params' => ['firstname' => $data['firstname'],
+            'lastÏword' => bcrypt($data['password'])
+        ]
+    ]);
+        $client = new \GuzzleHttp\Client(['cookies' => true]);
+$promise = $client->sendAsync($request)->then(function ($response) {
+    echo 'I completed! ' . $response->getBody();die();
+});
+$promise->wait();
+//'firstname' => $data['firstname'],
+//            'lastname' => $data['lastname'],
+//            'email' => $data['email'],
+//            'password' => bcrypt($data['password']),
+//        ]);
         ECHO "RES WAS " . (int)$res ."\n";
-        exit();
+die('done');
         return $res;
     }
     
