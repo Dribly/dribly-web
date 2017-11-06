@@ -64,8 +64,8 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
 
-//        $request = new \GuzzleHttp\Psr7\Request('POST', $_ENV['SERVICE_USERS'].'/api/v1/register',[
-        $request = new \GuzzleHttp\Psr7\Request('POST', 'http://dribly:3008/'.'/ping',[
+        $request = new \GuzzleHttp\Psr7\Request('POST', $_ENV['SERVICE_USERS'].'/api/v1/register',[
+//        $request = new \GuzzleHttp\Psr7\Request('POST', 'http://dribly:3008/'.'/ping',[
     'form_params' => ['firstname' => $data['firstname'],
             'lastÏword' => bcrypt($data['password'])
         ]
