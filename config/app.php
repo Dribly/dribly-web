@@ -177,7 +177,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         
-        
+        /*
+         * Validator service to allow remote validators 
+         */
+        App\Providers\ValidatorServiceProvider::class,
 
     ],
 
