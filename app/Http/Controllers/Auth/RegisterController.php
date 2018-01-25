@@ -20,10 +20,7 @@ class RegisterController extends Controller {
       |
      */
 
-use RegistersUsers {
-    register as traitRegister;
-    
-}
+use RegistersUsers;
 
     /**
      * Where to redirect users after registration.
@@ -57,6 +54,18 @@ use RegistersUsers {
 		'email.email_unique'=>'That email address is already in use',
             'email'=>'mooo']);
     }
+
+    /**
+     * The user has been registered.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
+     */
+    protected function registered(Request $request, $user)
+    {
+     return true;   //
+    }    
 //public function register(Request $request)
 //{
 //    try
@@ -86,17 +95,9 @@ use RegistersUsers {
         }
         try {
             if ($user->create()) {
-                die('user created');
                 return $user;
             }
         } catch (\App\Exceptions\DriblyApiModelException $e) {
-//            echo "HIII";
-//            return $this->showRegistrationForm();
-//            \Flash::error('Please check your data are entered correctly below');
-//            die('got here');
-//            var_dump($e->getMessage());die();
-//            return redirect()->back();
-//            die('here '.__LINE__.' ' . __FILE__);
             throw $e;
         }
     }
@@ -109,7 +110,5 @@ use RegistersUsers {
      * @return mixed
      */
     protected function registered(Request $request, $user) {
-        echo "HI " . __FILE__ . " "  . __LINE__."<br />";
-        die(); //
     }
 }

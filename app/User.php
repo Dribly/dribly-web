@@ -27,11 +27,23 @@ class User extends Authenticatable {
     protected $hidden = [
         'remember_token',
     ];
-
+    
+    public function findByCredentials(string $email, string $password) :? User
+    {
+        $user = $this->post($_ENV['SERVICE_USERS'] . '/api/v1/users/auth', ["email" => $email, "password"=>$password]);
+        var_dump($user);die();
+    }
+    public function setFromApi(array $apiData)
+    {
+        $this->id = $apiData['id'];
+        $this->first_name = $apiData['first_name'];
+        $this->last_name = $apiData['last_name'];
+//        $this->last_name = $apiData['last_name'];
+    }
     public function create() {
         $success = false;
         try {
-            if ($this->post($_ENV['SERVICE_USERS'] . '/api/v1/register', ["json" => $this])) {
+            if ($this->post($_ENV['SERVICE_USERS'] . '/api/v1/users/register', $this)) {
                 $success = true;
             } else {
                 $success = false;

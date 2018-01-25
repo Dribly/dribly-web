@@ -30,7 +30,8 @@ class EmailUnique implements Rule
         $passes = false;
         try
         {
-            $passes = !$this->get($_ENV['SERVICE_USERS'] . '/api/v1/users/exists', ['query' => ["email" => $value]]);
+            $passes = !$this->get($_ENV['SERVICE_USERS'] . '/api/v1/users/exists', ["email" => $value]);
+//            var_dump($passes);die();
         }
         catch (\Exception $e)
         {

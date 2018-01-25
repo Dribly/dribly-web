@@ -15,7 +15,7 @@ Log In
         </ul>
     </div>
 @endif
-
+<section>
 <form method="POST" action="/register">
     {!! csrf_field() !!}
 
@@ -47,6 +47,6 @@ Log In
         <button type="submit">Register</button>
     </div>
 </form>
-
+</section>
       
 @endsection

@@ -16,6 +16,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/dashboard', 
+        ['as' => 'users.dashboard',
+    'uses' => 'UsersController@dashboard']);
+
 Route::get('/mqttsubscriber', 
         ['as' => 'mqtt.monitor',
     'uses' => 'MQTTController@monitor']);

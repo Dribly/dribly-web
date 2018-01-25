@@ -39,8 +39,8 @@ trait TalksToDriblyApiTrait
         try
         {
             $client = new \GuzzleHttp\Client(['cookies' => true]);
-            $response = $client->request('POST', $uri, $settings);
-            switch ($response->getStatusCode()) {
+            $responseObj = $client->request('POST', $uri, ['json'=>$settings]);
+            switch ($responseObj->getStatusCode()) {
                 case 200:
                     $res = true;
                     break;
@@ -53,6 +53,8 @@ trait TalksToDriblyApiTrait
         }
         catch (\GuzzleHttp\Exception\RequestException $e)
         {
+            \Log::debug(print_r($e->getResponse()->getBody(),true));
+            var_dump($e->getResponse()->getBody());
             $response = json_decode($e->getResponse()->getBody());
             \Log::debug(print_r($response,true));
             throw new \App\Exceptions\DriblyApiModelException($e->getCode(), $response->error, $response->fieldErrors);
@@ -77,17 +79,19 @@ trait TalksToDriblyApiTrait
         try
         {
             $client = new \GuzzleHttp\Client(['cookies' => true]);
-            $response = $client->request('GET', $uri, $settings);
-            switch ($response->getStatusCode()) {
+            $responseObj = $client->request('GET', $uri, ['query'=>$settings]);
+//            var_dump($responseObj);
+                    $response = json_decode($responseObj->getBody());
+            switch ($responseObj->getStatusCode()) {
                 case 200:
                     $res = true;
                     break;
                 default:
                     $res = false;
-                    $response = json_decode($res->getBody());
+                    $response = json_decode($responseObj->getBody());
                     break;
             }
-            return $res;
+            return $response;
         }
         catch (\GuzzleHttp\Exception\RequestException $e)
         {

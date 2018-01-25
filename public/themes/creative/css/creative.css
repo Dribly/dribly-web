@@ -141,7 +141,7 @@ body {
           #mainNav.navbar-shrink .navbar-nav > li.nav-item > a.nav-link:focus:hover {
             color: #F05F40; } }
 
-header.masthead {
+header.masthead, header.thinmast {
   position: relative;
   width: 100%;
   min-height: auto;

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use App\User;
 
 class LoginController extends Controller
 {
@@ -36,4 +38,24 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+    
+    public function login(Request $request)
+    {
+        $userObj = new User();
+        $user = $userObj->findByCredentials($request->email, $request->password);
+        // Get user record
+        $user = User::where('mobile_no', $request->get('mobile_no'))->first();
+
+        // Check Condition Mobile No. Found or Not
+        if($request->get('mobile_no') != $user->mobile_no) {
+            \Session::put('errors', 'Your mobile number not match in our system..!!');
+            return back();
+        }        
+        
+        // Set Auth Details
+        \Auth::login($user);
+        
+        // Redirect home page
+        return redirect()->route('home');
+    }    
 }
