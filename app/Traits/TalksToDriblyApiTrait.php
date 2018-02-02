@@ -53,10 +53,11 @@ trait TalksToDriblyApiTrait
         }
         catch (\GuzzleHttp\Exception\RequestException $e)
         {
-            \Log::debug(print_r($e->getResponse()->getBody(),true));
-            var_dump($e->getResponse()->getBody());
+            \Log::debug(print_r($e->getResponse(),true));
+            \Log::debug('one');
             $response = json_decode($e->getResponse()->getBody());
             \Log::debug(print_r($response,true));
+            \Log::debug('twp');
             throw new \App\Exceptions\DriblyApiModelException($e->getCode(), $response->error, $response->fieldErrors);
             
         }
