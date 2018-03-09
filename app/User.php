@@ -30,8 +30,16 @@ class User extends Authenticatable {
     
     public function findByCredentials(string $email, string $password) :? User
     {
-        $user = $this->post($_ENV['SERVICE_USERS'] . '/api/v1/users/auth', ["email" => $email, "password"=>$password]);
-        var_dump($user);die();
+        try
+        {
+            return $this->post($_ENV['SERVICE_USERS'] . '/api/v1/users/auth', ["email" => $email, "password"=>$password]);
+        }
+        catch (\App\Exceptions\DriblyApiModelException $e)
+        {
+            return null;
+        }
+       
+//        var_dump($user);die();
     }
     public function setFromApi(array $apiData)
     {
@@ -43,7 +51,7 @@ class User extends Authenticatable {
     public function create() {
         $success = false;
         try {
-            if ($this->post($_ENV['SERVICE_USERS'] . '/api/v1/users/register', $this)) {
+            if ($this->post($_ENV['SERVICE_USERS'] . '/api/v1/users/register', $this->getAttributes())) {
                 $success = true;
             } else {
                 $success = false;

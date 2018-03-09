@@ -64,7 +64,7 @@ use RegistersUsers;
      */
     protected function registered(Request $request, $user)
     {
-     return true;   //
+     return ($user->id > 0);   //
     }    
 //public function register(Request $request)
 //{
